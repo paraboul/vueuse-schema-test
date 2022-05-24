@@ -73,7 +73,7 @@ async function createServer(
 
       const [appHtml, preloadLinks, heads] = await render(url, manifest)
 
-      console.log("Heads", heads)
+      console.log("Heads", heads.headTags)
 
       const html = `
       <!DOCTYPE html>
