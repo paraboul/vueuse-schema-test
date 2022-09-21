@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
-import { useSchemaOrg, defineWebSite, defineWebPagePartial } from '@vueuse/schema-org'
+import { useSchemaOrg, defineWebPage, defineOrganization, defineWebSite, SchemaOrgDebug } from '@vueuse/schema-org/runtime'
 
 useHead({
   title: "Title from vueuse-head"
@@ -28,7 +28,7 @@ useSchemaOrg([
     name: 'My Awesome Site',
   }),
   // https://vue-schema-org.netlify.app/schema/webpage.html
-  defineWebPagePartial(),
+  defineWebPage(),
 ])
 
 </script>

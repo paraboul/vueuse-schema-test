@@ -4,6 +4,7 @@ const virtualFile = '@virtual-file'
 const virtualId = '\0' + virtualFile
 const nestedVirtualFile = '@nested-virtual-file'
 const nestedVirtualId = '\0' + nestedVirtualFile
+import { SchemaOrg } from '@vueuse/schema-org-vite'
 
 /**
  * @type {import('vite').UserConfig}
@@ -25,6 +26,11 @@ module.exports = {
         }
       }
     },
+    SchemaOrg({
+      mock: false,
+      full: false,
+      dts: true,
+  }),
     {
       name: 'virtual-module',
       resolveId(id) {

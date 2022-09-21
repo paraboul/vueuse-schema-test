@@ -2,7 +2,7 @@ import App from './App.vue'
 import { createSSRApp } from 'vue'
 import { createRouter } from './router'
 import { createHead } from '@vueuse/head'
-import { createSchemaOrg, useVueUseHead } from '@vueuse/schema-org'
+import { installSchemaOrg } from '@vueuse/schema-org-vite/vite'
 
 // SSR requires a fresh app instance per request, therefore we export a function
 // that creates a fresh app instance. If using Vuex, we'd also be creating a
@@ -14,17 +14,10 @@ export function createApp() {
 
   app.use(head)
 
-  const schemaOrg = createSchemaOrg({
-    head,
-    canonicalHost: 'https://example.com',
-    provider: {
-      useRoute: () => router.currentRoute,
-      setupDOM: useVueUseHead(head)
-    }
-  })
-  schemaOrg.setupDOM()
-  app.use(schemaOrg)
-
+  const s = installSchemaOrg({ app, router }, {
+    canonicalHost: 'https://www.test.org',
+    defaultLanguage: "fr-FR",
+})
 
   app.use(router)
   return { app, router, head }
